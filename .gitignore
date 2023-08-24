@@ -122,3 +122,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Add IntelliJ IDEA-based IDEs to .gitignore
+.idea/

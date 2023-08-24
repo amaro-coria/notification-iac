@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: message-app
+  labels:
+    app: message-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: message-app
+  template:
+    metadata:
+      labels:
+        app: message-app
+    spec:
+      containers:
+      - name: message-app
+        image: amarocoria/message-app:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: BACKEND_SERVICE_HOST
+          value: "notification-service"
+        - name: BACKEND_SERVICE_PORT
+          value: "8080"
+        - name: DB_HOST
+          value: "message-app-db"
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_USERNAME
+          value: "postgres"
+        - name: DB_PASSWORD
+          value: "postgres"
+        # Add other environment variables as needed
